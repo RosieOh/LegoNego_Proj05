@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chunjae.legonego.per.NoticeMapper">
+
+    <!-- 공지사항 목록 출력 (검색창, 페이징 포함) -->
+    <select id="noticeList" resultType="com.chunjae.legonego.entity.Notice">
+        <![CDATA[
+        select * from notice
+        ]]>
+        <where>
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'title'.toString()">
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'content'.toString()">
+                        content LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+        <![CDATA[
+        order by resdate desc LIMIT #{postStart}, #{postCount}
+        ]]>
+    </select>
+
+    <!-- 공지사항 글 상세보기 -->
+    <select id="noticeDetail" resultType="com.chunjae.legonego.entity.Notice">
+        select * from notice where no=#{no}
+    </select>
+
+    <!-- 글 수 카운트 -->
+    <select id="totalCount" resultType="integer">
+        <![CDATA[
+    select count(*) from notice
+       ]]>
+        <where>
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'title'.toString()">
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'content'.toString()">
+                        content LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+    <!-- 공지사항 글 작성 -->
+    <insert id="noticeInsert">
+        insert into notice VALUES (default, #{title}, #{content}, default, default);
+    </insert>
+
+    <!-- 공지사항 글 삭제 -->
+    <delete id="noticeDelete">
+        delete from notice where no=#{no}
+    </delete>
+
+    <!-- 공지사항 글 수정 -->
+    <update id="noticeEdit">
+        update notice set title=#{title}, content=#{content} where no=#{no}
+    </update>
+
+    <!-- visit 증가 -->
+    <update id="visitCount">
+        update notice set visit = visit+1 where no=#{no}
+    </update>
+
+    <!-- 검색창 (제목, 내용) -->
+    <sql id="criteria">
+        <where>
+            <trim prefixOverrides="OR">
+                <foreach item="type" collection="typeArr">
+                    <trim prefixOverrides="OR">
+                        <choose>
+                            <when test="type == 'T'.toString()">
+                                title LIKE '%' || #{keyword} || '%'
+                            </when>
+                            <when test="type == 'C'.toString()">
+                                content LIKE '%' || #{keyword} || '%'
+                            </when>
+                        </choose>
+                    </trim>
+                </foreach>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 페이징 처리 -->
+    <select id="getListWithPaging" resultType="com.chunjae.legonego.entity.Notice">
+        <![CDATA[
+        select * from notice
+        ]]>
+        <include refid="criteria" />
+        <![CDATA[
+        ORDER BY regdate DESC LIMIT ((#{pageNum} - 1) * #{amount}), #{amount}
+        ]]>
+    </select>
+</mapper>

@@ -9,9 +9,9 @@
     <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
     <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
-    <link rel="stylesheet" href="${path0}/resource/css/pure-min.css">
-    <link rel="stylesheet" href="${path0}/resource/css/grids-responsive-min.css">
-    <link rel="stylesheet" href="${path0}/resource/css/styles.css">
+    <link rel="stylesheet" href="${path0}/static/css/pure-min.css">
+    <link rel="stylesheet" href="${path0}/static/css/grids-responsive-min.css">
+    <link rel="stylesheet" href="${path0}/static/css/styles.css">
     <title>메인 페이지</title>
 </head>
 <body>
