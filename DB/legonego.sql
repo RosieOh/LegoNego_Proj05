@@ -25,7 +25,35 @@ CREATE TABLE user(
 
 SELECT * FROM user;
 
-INSERT INTO USER VALUES (DEFAULT, 1, 'admin', '관리자', '1234');
+CREATE TABLE euser (
+                       id INT PRIMARY KEY AUTO_INCREMENT,
+                       name VARCHAR(20) NOT NULL,
+                       password VARCHAR(300) NOT NULL,
+                       username VARCHAR(50) NOT NULL,
+                       email VARCHAR(100) NOT NULL,
+                       address VARCHAR(300),
+                       tel VARCHAR(20),
+                       regdate DATETIME DEFAULT CURRENT_TIMESTAMP,
+                       lev VARCHAR(20) DEFAULT 'USER',
+                       act VARCHAR(20) DEFAULT 'JOIN',
+                       pt INT DEFAULT 0, -- 포인트
+                       CONSTRAINT unique_name UNIQUE (name), -- 동명이인 방지
+                       CONSTRAINT unique_id UNIQUE (id), -- id 중복 방지
+                       CONSTRAINT unique_email UNIQUE (email) -- 이메일 중복 방지
+);
+
+-- 회원 테이블 더미 데이터
+insert into euser values(DEFAULT, 'admin', '1234', '관리자', 'admin@legonego.com', '서울 구로구', '010-1234-5678', DEFAULT, 'ADMIN', default, DEFAULT);
+insert into euser values(DEFAULT, 'sirious920', '1234', '오레오', 'sirious920@naver.com', '서울 관악구', '010-1234-5678', DEFAULT, 'ADMIN', default, DEFAULT);
+insert into euser values(DEFAULT, 'test1', '1234', '테스트1', 'test1@edu.com', '서울 관악구', '010-1234-5678', DEFAULT, 'USER', default, DEFAULT);
+insert into euser values(DEFAULT, 'test2', '1234', '테스트2', 'test2@edu.com', '서울 관악구', '010-1234-5678', DEFAULT, 'USER', default, DEFAULT);
+insert into euser values(DEFAULT, 'test3', '1234', '테스트3', 'test3@edu.com', '서울 관악구', '010-1234-5678', DEFAULT, 'USER', default, DEFAULT);
+
+UPDATE euser SET PASSWORD='$2a$10$3WCl8X4BUzOItXcQBWov3OqmoSCdX9Z1yy6fsM7wt/xIn515RpHa6';
+
+COMMIT;
+
+SELECT * FROM euser;
 
 CREATE TABLE user_role(
                           user_id INT NOT NULL,
@@ -45,14 +73,24 @@ CREATE TABLE notice(
                        author INT,
                        regdate DATETIME DEFAULT CURRENT_TIME,
                        cnt INT DEFAULT 0,
-                       FOREIGN KEY(author) REFERENCES user(user_id) ON DELETE CASCADE
+                       FOREIGN KEY(author) REFERENCES euser(id) ON DELETE CASCADE
 );
 
-INSERT INTO notice VALUES (DEFAULT,'샘플 글 제목1  입니다.','여기는 샘플 글 1의 내용입니다.',1,DEFAULT, DEFAULT);
-INSERT INTO notice VALUES (DEFAULT,'샘플 글 제목2  입니다.','여기는 샘플 글 2의 내용입니다.',1,DEFAULT, DEFAULT);
-INSERT INTO notice VALUES (DEFAULT,'샘플 글 제목3  입니다.','여기는 샘플 글 3의 내용입니다.',1,DEFAULT, DEFAULT);
-INSERT INTO notice VALUES (DEFAULT,'샘플 글 제목4  입니다.','여기는 샘플 글 4의 내용입니다.',1,DEFAULT, DEFAULT);
-INSERT INTO notice VALUES (DEFAULT,'샘플 글 제목5  입니다.','여기는 샘플 글 5의 내용입니다.',1,DEFAULT, DEFAULT);
-INSERT INTO notice VALUES (DEFAULT,'샘플 글 제목6  입니다.','여기는 샘플 글 6의 내용입니다.',1,DEFAULT, DEFAULT);
+drop table notice;
+
+INSERT INTO notice VALUES (DEFAULT,'테1','테1 내용',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'테2','테2 내용',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'테3','테3 내용',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'테4','테4 내용',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'테5','테5 내용',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'테6','테6 내용',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'테7','테7 내용',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'테8','테8 내용',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'테9','테9 내용',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'테10','테10 내용',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'테11','테11 내용',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'테12','테12 내용',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'테13','테13 내용',1,DEFAULT, DEFAULT);
+
 
 SELECT * FROM notice;
