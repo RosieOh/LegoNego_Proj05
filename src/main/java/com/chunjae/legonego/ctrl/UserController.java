@@ -2,7 +2,6 @@ package com.chunjae.legonego.ctrl;
 
 import com.chunjae.legonego.biz.UserService;
 import com.chunjae.legonego.entity.Euser;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:8085")
@@ -24,11 +24,6 @@ public class UserController {
     private UserService userService;
 
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-    @GetMapping("/")
-    public String home(Model model){
-        return "index";
-    }
 
     @GetMapping("/admin/userList")
     public String getUserList(Model model) { // User 테이블의 전체 정보를 보여줌

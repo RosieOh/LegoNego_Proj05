@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Tsherp</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <div th:replace="/common/head.html :: headPath"></div>
 </head>
+
 <body>
+  <!-- ======= Header ======= -->
+  <div th:replace="/common/header.html :: headerPath"></div>
+  <!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <div th:replace="/contents/banner.html :: bannerPath"></div>
+  <!-- End Hero -->
+
+  <!-- Start Main -->
+  <div th:replace="/contents/mainContent.html :: mainContentPath"></div>
+  <!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <div th:replace="/common/footer.html :: footerPath"></div>
+  <!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 </body>
+
 </html>

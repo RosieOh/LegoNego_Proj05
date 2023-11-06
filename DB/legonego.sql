@@ -6,17 +6,14 @@ ALTER DATABASE legonego DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 use legonego;
 
 -- ==========================================================
-
-CREATE TABLE role(
+CREATE TABLE ROLE(
                      role_id INT PRIMARY KEY AUTO_INCREMENT,
-                     role VARCHAR(255) DEFAULT NULL)
-;
+                     role VARCHAR(255) DEFAULT NULL
+);
 
-DESC ROLE;
+SELECT * FROM ROLE;
 
-select * from legonego;
-
--- ==========================================================
+INSERT INTO ROLE VALUES (DEFAULT, 'ADMIN');
 
 CREATE TABLE user(
                      user_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -26,11 +23,9 @@ CREATE TABLE user(
                      password VARCHAR(300) NOT NULL
 );
 
-DESC USER;
+SELECT * FROM user;
 
-select * from USER;
-
--- ==========================================================
+INSERT INTO USER VALUES (DEFAULT, 1, 'admin', '관리자', '1234');
 
 CREATE TABLE user_role(
                           user_id INT NOT NULL,
@@ -38,78 +33,26 @@ CREATE TABLE user_role(
                           PRIMARY KEY (user_id, role_id)
 );
 
-DESC user_role;
+SELECT * FROM user_role;
 
-select * from user_role;
+INSERT INTO user_role VALUES ( 1, 1);
 
--- ==========================================================
 
-create table board(
-    bno INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(200) NOT NULL,
-    content VARCHAR(2000) NOT NULL,
-    resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    visit int DEFAULT 0,
-    count int default 0
+CREATE TABLE notice(
+                       no INT PRIMARY KEY AUTO_INCREMENT,
+                       title VARCHAR(300) NOT NULL,
+                       content VARCHAR(1000) NOT NULL,
+                       author INT,
+                       regdate DATETIME DEFAULT CURRENT_TIME,
+                       cnt INT DEFAULT 0,
+                       FOREIGN KEY(author) REFERENCES user(user_id) ON DELETE CASCADE
 );
 
-DESC board;
+INSERT INTO notice VALUES (DEFAULT,'샘플 글 제목1  입니다.','여기는 샘플 글 1의 내용입니다.',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'샘플 글 제목2  입니다.','여기는 샘플 글 2의 내용입니다.',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'샘플 글 제목3  입니다.','여기는 샘플 글 3의 내용입니다.',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'샘플 글 제목4  입니다.','여기는 샘플 글 4의 내용입니다.',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'샘플 글 제목5  입니다.','여기는 샘플 글 5의 내용입니다.',1,DEFAULT, DEFAULT);
+INSERT INTO notice VALUES (DEFAULT,'샘플 글 제목6  입니다.','여기는 샘플 글 6의 내용입니다.',1,DEFAULT, DEFAULT);
 
-select * from board;
-
--- ==========================================================
-
-CREATE TABLE faq (
-                     fno INT AUTO_INCREMENT PRIMARY KEY,
-                     question VARCHAR(1000) NOT NULL,
-                     answer VARCHAR(1000) NOT NULL,
-                     cnt INT DEFAULT 0 NOT NULL
-);
-
-DESC faq;
-
-select * from faq;
-
--- ==========================================================
-
-CREATE TABLE COMMENT(
-                        dno INT PRIMARY KEY AUTO_INCREMENT, -- 댓글 번호
-                        author VARCHAR(20) NOT NULL, -- 댓글 작성자
-                        content VARCHAR(500) NOT NULL, -- 댓글 내용
-                        regdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 댓글 등록일
-                        par INT(10) NOT NULL -- 해당 후기 번호
-);
-
-DESC comment;
-
-select * from comment;
-
--- ==========================================================
-
-CREATE TABLE fileobj (
-                         no int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                         postno INT NOT NULL,
-                         savefolder VARCHAR(400),
-                         originfile VARCHAR(400),
-                         savefile VARCHAR(800),
-                         filesize LONG,
-                         uploaddate VARCHAR(100)
-);
-
-DESC fileobj;
-
-select * from fileobj;
-
--- ==========================================================
-
-CREATE TABLE fileboard (
-                           postno int NOT NULL AUTO_INCREMENT PRIMARY KEY,	-- 글 번호
-                           title VARCHAR(100) not null,   -- 글제목
-                           content VARCHAR(1500) not null,    -- 글내용
-                           regdate DATETIME DEFAULT CURRENT_TIMESTAMP(),   -- 작성일
-                           visited INT DEFAULT 0   -- 조회수
-);
-
-DESC fileboard;
-
-select * from fileboard;
+SELECT * FROM notice;

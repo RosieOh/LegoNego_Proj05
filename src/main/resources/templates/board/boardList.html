@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Tsherp</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <div th:replace="/common/head.html :: headPath"></div>
+</head>
+<body>
+<!-- ======= Header ======= -->
+<div th:replace="/common/header.html :: headerPath"></div>
+<!-- End Header -->
+
+<!-- Breadcrumbs start -->
+<div class="breadcrumbs">
+    <div class="page-header d-flex align-items-center" style="background-image: url('/img/banner.png');">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <h2>커뮤니티</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav>
+        <div class="container">
+            <ol>
+                <li><a href="../">Home</a></li>
+                <li>커뮤니티</li>
+            </ol>
+        </div>
+    </nav>
+</div>
+<!-- Breadcrumbs end -->
+
+<!-- boardList start -->
+<section id="horizontal-pricing" class="horizontal-pricing pt-0">
+    <div class="btn-group btn-group-toggle mb-5" data-toggle="buttons" style="display: flex; width: 70%; justify-content: center; margin: 50px auto;">
+        <label class="btn btn-primary active" style="background-color: #71A894; border: none; font-weight: bold;">
+            <input type="radio" checked="checked" th:checked="${curCategory == null}" th:href="@{/board/list}" style="opacity: 0;"/> 전체
+        </label>
+        <th:block th:each="cate : ${categories}">
+            <label class="btn btn-primary" th:classappend="${cate.cate eq curCategory} ? 'active' : ''" style="background-color: lightgray; color: #000000; border: none; font-weight: bold;">
+                <input type="radio" th:checked="${cate.cate eq curCategory}" th:href="@{'/board/list?cate=' + ${cate.cate}}" style="opacity: 0;"/> <span th:text="${cate.cateName}"></span>
+            </label>
+        </th:block>
+    </div>
+
+
+    <th:block th:each="board : ${list}">
+        <div class="container" data-aos="fade-up">
+            <div class="row gy-4 pricing-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-3 d-flex align-items-center justify-content-center">
+                    <div style="display: flex; justify-content: center; margin-top: 20px;">
+                        <div class="card" style="width: 90%;">
+                            <div class="card-body">
+                                <div class="card-title" style="padding-bottom: 20px; border-bottom: 1px solid;">
+                                    <div class="d-flex align-items-center mt-3">
+                                        <div class="ms-3">
+                                            <p class="mb-0" style="font-weight: bold; padding-bottom: 5px;">[[${board.cateName}]]</p>
+                                            <h3>[[${board.title}]]</h3>
+                                            <p class="mb-0">작성자 | [[${board.regdate}]] 작성일 | <span th:with="resdate=${board.regdate}">[[${#dates.format(regdate, 'yyyy-MM-dd')}]]</span> 조회수 | [[${board.visited}]]</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-text mt-4">
+                                    <div class="ms-3">
+                                        <p style="padding-top: 30px; padding-bottom: 100px;">[[${board.content}]]</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </th:block>
+</section>
+
+</main>
+
+
+<!-- End main -->
+
+<!-- ======= Footer ======= -->
+<div th:replace="/common/footer.html :: footerPath"></div>
+<!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+</body>
+
+</html>

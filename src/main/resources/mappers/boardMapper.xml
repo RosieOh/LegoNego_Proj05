@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chunjae.legonego.per.BoardMapper">
+
+    <select id="category" resultType="com.chunjae.legonego.entity.Category">
+        select * from category
+    </select>
+
+    <select id="getBoardList" resultType="com.chunjae.legonego.entity.BoardVO">
+        <![CDATA[
+        select bno, catename, title, content, regdate, visited from board b join category c on(b.cate=c.cate)
+        ]]>
+        <where>
+            <if test="category != null">
+                AND c.cate = #{category}
+            </if>
+        </where>
+        <![CDATA[
+        ORDER BY bno DESC
+        ]]>
+    </select>
+
+    <insert id="boardInsert" parameterType="map">
+        insert into board values(default, #{param.title}, #{param.content}, default, default)
+    </insert>
+
+</mapper>

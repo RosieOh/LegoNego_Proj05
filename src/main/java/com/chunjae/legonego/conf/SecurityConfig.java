@@ -41,8 +41,8 @@ public class SecurityConfig {
                 .requestMatchers(new AntPathRequestMatcher("/idCheck")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/emailCheck")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasRole("ADMIN")
-                .requestMatchers(new AntPathRequestMatcher("/emp/**")).hasAnyRole("EMP","ADMIN")
-                .requestMatchers(new AntPathRequestMatcher("/user/**")).hasAnyRole("USER","EMP","ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/emp/**")).hasAnyRole("TEACHER","ADMIN")
+                .requestMatchers(new AntPathRequestMatcher("/user/**")).hasAnyRole("USER","TEACHER","ADMIN")
                 .requestMatchers(new AntPathRequestMatcher("/board/**")).permitAll()
                 .anyRequest().authenticated());
         //로그인 설정
