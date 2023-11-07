@@ -23,7 +23,7 @@
 <link href="${path1}/resource/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
 <!-- Template Main CSS File -->
-<link href="${path1}resource/css/style.css" rel="stylesheet">
+<link href="${path1}/resource/css/style.css" rel="stylesheet">
 
 <!-- Vendor JS Files -->
 <script src="${path1}/resource/vendor/aos/aos.js"></script>
