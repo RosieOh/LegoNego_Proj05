@@ -4,7 +4,7 @@
 <sec:authorize access="isAuthenticated()">
     <sec:authentication property="principal" var="principal"/>
 </sec:authorize>
-<c:set var="path1" value="${pageContext.request.contextPath}" />
+<c:set var="path0" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +13,7 @@
     <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
     <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
-    <title>공지사항 상세보기</title>
+    <title>Tsherpa</title>
 
     <jsp:include page="../common/head.jsp"/>
 </head>
@@ -25,7 +25,6 @@
 <!-- ======= Header ======= -->
 <jsp:include page="../common/header.jsp"/>
 <!-- End Header -->
-
 
 
 <!-- ======= Footer ======= -->

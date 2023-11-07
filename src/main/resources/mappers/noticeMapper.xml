@@ -19,7 +19,7 @@
             </if>
         </where>
         <![CDATA[
-        order by resdate desc LIMIT #{postStart}, #{postCount}
+        order by regdate desc LIMIT #{postStart}, #{postCount}
         ]]>
     </select>
 
