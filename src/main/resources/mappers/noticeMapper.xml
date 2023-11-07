@@ -48,8 +48,8 @@
     </select>
 
     <!-- 공지사항 글 작성 -->
-    <insert id="noticeInsert">
-        insert into notice VALUES (default, #{title}, #{content}, default, default);
+    <insert id="noticeInsert" parameterType="com.chunjae.test06.entity.Notice">
+        insert into notice (title, content, col3, col4, col5) VALUES (#{title}, #{content}, default, default, default);
     </insert>
 
     <!-- 공지사항 글 삭제 -->

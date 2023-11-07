@@ -3,6 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <sec:authorize access="isAuthenticated()">
     <sec:authentication property="principal" var="principal"/>
+    <sec:authentication property="authorities" var="authorities"/>
 </sec:authorize>
 <c:set var="path0" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -52,7 +53,7 @@
             </form>
         </div>
         <div class="col-md-8 text-right">
-            <c:if test="${sid.equals('admin')}">
+            <c:if test="${authorities eq '[ADMIN]'}">
                 <a class="btn btn-primary" href="${path1}/notice/insert.do?site=user">글쓰기</a>
             </c:if>
         </div>
