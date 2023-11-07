@@ -4,7 +4,7 @@
 <sec:authorize access="isAuthenticated()">
     <sec:authentication property="principal" var="principal"/>
 </sec:authorize>
-<c:set var="path0" value="${pageContext.request.contextPath}" />
+<c:set var="path1" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,18 +15,16 @@
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     <title>Tsherpa</title>
 
-    <jsp:include page="./common/head.jsp"/>
+    <jsp:include page="../common/head.jsp"/>
 </head>
-<body>
 
 <!-- ======= Top Bar ======= -->
-<jsp:include page="./common/topbar.jsp"/>
+<jsp:include page="../common/topbar.jsp"/>
 
 <!-- ======= Header ======= -->
-<jsp:include page="./common/header.jsp"/>
+<jsp:include page="../common/header.jsp"/>
 <!-- End Header -->
 
-<link href="https://cdn.jsdelivr.net/npm/bulma-accordion@2.0.1/dist/css/bulma-accordion.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -34,17 +32,6 @@
     .breadcrumb a { color: #464646; }
 
     @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap');
-    /*
-    *{
-        font-family: 'Nanum Gothic Coding', monospace;
-    } */
-
-    /*.title {
-        font-family: 'Nanum Gothic Coding', monospace;
-        margin-top: 55px;
-        text-align: center;
-        font-weight: 700;
-    }*/
 
     *{
         padding: 0;
@@ -107,22 +94,26 @@
 
 </style>
 
-</head>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src=https://cdn.jsdelivr.net/npm/bulma-accordion@2.0.1/dist/js/bulma-accordion.min.js"></script>
 <body>
-<!-- 헤더 부분 인클루드 -->
-<jsp:include page="../include/header.jsp"></jsp:include>
-<nav class="breadcrumb has-succeeds-separator is-medium is-right mt-3 p-4" style="background: #f1f4f9" aria-label="breadcrumbs">
-    <ul class="mr-5">
-        <li><a href="${path1}"><i class="xi-home is-size-3"></i></a></li>
-        <li><a>커뮤니티</a></li>
-        <li><a href="${path1}/faq/list.do">자주 묻는 질문</a></li>
-    </ul>
-    <p class="title has-text-centered mt-1 mb-2">자주 묻는 질문</p>
-    <%--    <h3 class="contents">고객님들과 학생들이 자주 묻는 질문들을 한 눈에 볼 수 있는 해법의 FAQ입니다.</h3>--%>
-</nav>
+
+<div class="breadcrumb has-succeeds-separator is-medium is-right mt-3 p-4" style="background: #f1f4f9; height: 200px;" aria-label="breadcrumbs">
+    <div class="container-fluid" style="background: #f1f4f9;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background: #f1f4f9;">
+            <a class="navbar-brand" href="${path1}/"><i class="xi-home is-size-3"></i> Home</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="${path1}/user/login">로그인</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="container mt-5">
+            <h2 class="text-center">로그인</h2>
+        </div>
+    </div>
+</div>
+
 <div class="wrapper">
     <c:forEach var="faq" items="${faqList }" varStatus="status">
         <div class="faq active">
@@ -163,7 +154,7 @@
 </script>
 
 <!-- ======= Footer ======= -->
-<jsp:include page="./common/footer.jsp" />
+<jsp:include page="../common/footer.jsp" />
 <!-- End Footer -->
 
 </body>

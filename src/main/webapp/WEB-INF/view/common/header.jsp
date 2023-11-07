@@ -50,7 +50,7 @@
                     <ul>
                         <li class="dropdown"><a href="#"><span> 공지사항 </span></a></li>
                         <li class="dropdown"><a href="#"><span> 자유게시판 </span></a></li>
-                        <li class="dropdown"><a href="#"><span> 자주 묻는 질문 </span></a></li>
+                        <li class="dropdown"><a href="${path1}/faq/list.do"><span> 자주 묻는 질문 </span></a></li>
                         <li class="dropdown"><a href="#"><span> 고객의 소리 </span></a></li>
                     </ul>
                 <li><a href="#"> 고객센터 </a></li>
