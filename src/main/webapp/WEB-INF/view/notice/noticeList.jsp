@@ -14,9 +14,38 @@
     <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
     <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
     <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title> 공지사항 </title>
 
     <jsp:include page="../common/head.jsp"/>
+    <style>
+        .breadcrumb a { color: #464646; }
+
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap');
+
+        .table {
+            font-size: 1.25rem;
+            border-top: 2px solid #dee2e6;
+            border-bottom: 1px solid #dbdbdb;;
+        }
+        .table th {
+            white-space: nowrap;
+            background: #eff1f8;
+        }
+        .table td {
+            white-space: nowrap;
+        }
+        .table td, .table th {
+            padding: 0.75em 0.75em;
+        }
+
+        .item1 { width:6%; }
+        .item2 { width:64%; }
+        .item3 { width:10%; }
+        .item4 { width:10%; }
+        .item5 { width:10%; }
+    </style>
 </head>
 <body>
 
@@ -36,57 +65,64 @@
     <p class="title has-text-centered mt-1 mb-2">공지사항</p>
     <%--    <h3 class="contents">일정 및 행사 안내, 이벤트 발표, 채널 등 해법의 커뮤니티 게시판입니다.</h3>--%>
 </nav>
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-md-4">
-            <form action="${path1}/notice/list.do" method="get" class="form-inline">
-                <div class="form-group">
-                    <select class="form-control" id="type" name="type">
+
+<div class="container">
+    <div class="columns is-multiline mt-1 mx-5">
+        <div class="column is-4">
+            <form action="${path1 }/notice/list.do" method="get" class="field has-addons">
+                <p class="control">
+                <span class="select">
+                    <select id="type" name="type">
                         <option value="title">제목</option>
                         <option value="content">내용</option>
                     </select>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" value="${keyword}">
-                </div>
-                <button type="submit" class="btn btn-primary">검색</button>
+                </span>
+                </p>
+                <p class="control">
+                    <input class="input" type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" value="${keyword }">
+                </p>
+                <p class="control">
+                    <input type="submit" class="button" value="검색" />
+                </p>
             </form>
         </div>
-        <div class="col-md-8 text-right">
+        <div class="column is-2 is-offset-6 has-text-right">
             <c:if test="${authorities eq '[ADMIN]'}">
-                <a class="btn btn-primary" href="${path1}/notice/insert.do?site=user">글쓰기</a>
+                <a class="button is-link is-medium" href="${path1 }/notice/insert.do?site=user" >글쓰기</a>
             </c:if>
         </div>
-    </div>
-    <div class="table-responsive mt-3">
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th class="item1">No</th>
-                <th class="item2 text-center">제목</th>
-                <th class="item3 text-center">등록일</th>
-                <th class="item4 text-center">작성자</th>
-                <th class="item5 text-center">조회수</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="noti" items="${noticeList}" varStatus="status">
-                <tr>
-                    <td>${total - ((curPage - 1) * page.postCount + status.index)}</td>
-                    <td>
-                        <a href="${path1}/notice/detail.do?no=${noti.no}" class="alert-link">${noti.title}</a>
-                    </td>
-                    <fmt:parseDate value="${noti.resdate}" pattern="yyyy-MM-dd" var="formattedDate" />
-                    <td class="text-center"><fmt:formatDate value="${formattedDate}" pattern="yyyy.MM.dd"/></td>
-                    <td class="text-center">관리자</td>
-                    <td class="text-center">${noti.visit}</td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-    </div>
-</div>
 
+        <div class="column is-12">
+            <table class="table is-centered is-fullwidth">
+                <thead>
+                <tr>
+                    <th class="item1">No</th>
+                    <th class="item2 has-text-centered">제목</th>
+                    <th class="item3 has-text-centered">등록일</th>
+                    <th class="item4 has-text-centered">작성자</th>
+                    <th class="item5 has-text-centered">조회수</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="noti" items="${noticeList }" varStatus="status">
+                    <tr>
+                            <%--<td class="item1">${status.count + ((curPage - 1) * page.postCount) }</td>--%>
+                        <td>${total - ((curPage - 1) * page.postCount + status.index) }</td>
+                        <td>
+                            <a href="${path1 }/notice/detail.do?no=${noti.no }" class="al">${noti.title }</a>
+                        </td>
+                        <fmt:parseDate value="${noti.resdate}" pattern="yyyy-MM-dd" var="formattedDate" />
+                        <td class="has-text-centered"><fmt:formatDate value="${formattedDate }" pattern="yyyy.MM.dd"/></td>
+                        <td class="has-text-centered">관리자</td>
+                        <td class="has-text-centered">${noti.visit }</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+</div>
 
 <nav class="pagination is-rounded is-centered mb-6" role="navigation" aria-label="pagination">
     <c:if test="${curPage > page.pageCount }">

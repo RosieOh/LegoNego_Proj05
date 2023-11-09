@@ -38,7 +38,6 @@
 <jsp:include page="../common/header.jsp"/>
 <!-- End Header -->
 
-
 <nav class="breadcrumb has-succeeds-separator is-medium is-right mt-3 p-4" style="background: #f1f4f9" aria-label="breadcrumbs">
     <ul class="mr-5">
         <li><a href="${path1}"><i class="xi-home is-size-3"></i></a></li>
@@ -70,6 +69,14 @@
                             </script>
                         </td>
                     </tr>
+                    <%--
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" class="button2" value="등록" >
+                            <a class="button" href="${path1 }/notice/list.do">목록으로</a>
+                        </td>
+                    </tr>
+                    --%>
                     </tbody>
                 </table>
                 <div class="has-text-centered">
@@ -80,6 +87,7 @@
         <div class="column is-1"></div>
     </div>
 </div>
+
 <!-- ======= Footer ======= -->
 <jsp:include page="../common/footer.jsp" />
 <!-- End Footer -->
