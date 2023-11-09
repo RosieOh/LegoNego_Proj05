@@ -84,4 +84,9 @@ public class SecurityConfig {
     public static ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
         return new ServletListenerRegistrationBean<>(new HttpSessionEventPublisher());
     }
+
+//    @Bean(name = "uploadPath")
+//    public String uploadPath() { // 멀티파트 업로드 디렉토리 지정
+//        return "/Users/otaehun/Desktop/team04/team24/src/main/webapp/resources/upload";
+//    }
 }

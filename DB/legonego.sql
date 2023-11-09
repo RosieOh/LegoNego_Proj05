@@ -5,6 +5,7 @@ ALTER DATABASE legonego DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 use legonego;
 
+SHOW TABLES;
 -- ==========================================================
 CREATE TABLE ROLE(
                      role_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -138,6 +139,10 @@ CREATE TABLE fileobj (
                          uploaddate VARCHAR(100)
 );
 
+DESC fileobj;
+SELECT *  FROM fileobj;
+COMMIT;
+
 CREATE TABLE fileboard (
                            postno int NOT NULL AUTO_INCREMENT PRIMARY KEY,	-- 글 번호
                            title VARCHAR(100) not null,   -- 글제목
@@ -146,12 +151,13 @@ CREATE TABLE fileboard (
                            visited INT DEFAULT 0   -- 조회수
 );
 
-
-
+DESC fileboard;
+SELECT *  FROM FILEobj;
+COMMIT;
 
 -- ==========================================================
--- ==========================================================
 
+-- 댓글 처리
 CREATE TABLE COMMENT(
                         cno INT PRIMARY KEY AUTO_INCREMENT, -- 댓글 번호
                         author VARCHAR(20) NOT NULL, -- 댓글 작성자
@@ -160,4 +166,63 @@ CREATE TABLE COMMENT(
                         par INT(10) NOT NULL -- 해당 후기 번호
 );
 
+
+INSERT INTO comment VALUES(
+                              DEFAULT,
+                              '이나현',
+                              '좋은 정보 감사합니다!',
+                              DEFAULT,
+                              '6'
+                          );
+
+INSERT INTO comment VALUES(
+                              DEFAULT,
+                              '권은빈',
+                              '우왕~ 참고할게욧!',
+                              DEFAULT,
+                              '6'
+                          );
+
+INSERT INTO comment VALUES(
+                              DEFAULT,
+                              '이서진',
+                              '스마트해법 짱ㅋ',
+                              DEFAULT,
+                              '6'
+                          );
+
+INSERT INTO comment VALUES(
+                              DEFAULT,
+                              '안유빈',
+                              '허허,,, 그렇군요,,,',
+                              DEFAULT,
+                              '6'
+                          );
+
+INSERT INTO comment VALUES(
+                              DEFAULT,
+                              '오레오',
+                              '엥',
+                              DEFAULT,
+                              '6'
+                          );
+
+DESC comment;
+SELECT * FROM comment;
+COMMIT;
+
 -- ==========================================================
+
+-- 상품 구매 후기
+CREATE table review(
+                       no INT AUTO_INCREMENT PRIMARY KEY,
+                       title VARCHAR(200) NOT NULL,
+                       content VARCHAR(2000) NOT NULL,
+                       resdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                       visit int DEFAULT 0,
+                       id VARCHAR(50)
+);
+
+DESC review;
+SELECT * FROM review;
+COMMIT;

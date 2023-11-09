@@ -1,5 +1,6 @@
 package com.chunjae.test06.conf;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -17,5 +18,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 .allowCredentials(true)
                 .maxAge(MAX_AGE_SECS);
+    }
+
+    @Bean(name = "uploadPath")
+    public String uploadPath() { // 멀티파트 업로드 디렉토리 지정
+        return "/Users/otaehun/Desktop/team04/team24/src/main/webapp/resources/upload";
     }
 }

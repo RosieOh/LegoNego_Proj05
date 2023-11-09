@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.io.UnsupportedEncodingException;
-import java.util.Random;
 
 @PropertySource("classpath:application.properties")
 @Slf4j
@@ -18,7 +16,7 @@ import java.util.Random;
 public class EmailService {
 
     private final JavaMailSender javaMailSender;
-    private static final String senderEmail= "wisejohn950330@gmail.com";
+    private static final String senderEmail= "dhxogns920@naver.com";
     private static int number;
 
     public static void createNumber(){

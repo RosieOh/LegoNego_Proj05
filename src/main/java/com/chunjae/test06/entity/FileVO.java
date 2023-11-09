@@ -11,5 +11,5 @@ import java.util.List;
 @AllArgsConstructor
 public class FileVO {
     private FileBoard fileBoard;
-    private List<FileVO> fileList;
+    private List<FileDTO> fileList;
 }
