@@ -49,7 +49,7 @@
             <div class="col-md-4">
                 <form action="${path1}/free/list.do" method="get" class="input-group">
                     <div class="input-group-prepend">
-                        <select class="custom-select" id="type" name="type">
+                        <select class="custom-select" id="type" name="type" style="height: 38px;"> <!-- 높이 조정 -->
                             <option value="title">제목</option>
                             <option value="content">내용</option>
                         </select>

@@ -114,10 +114,10 @@
                         <td>
                             <a href="${path1 }/notice/detail.do?no=${noti.no }" class="al">${noti.title }</a>
                         </td>
-                        <fmt:parseDate value="${noti.resdate}" pattern="yyyy-MM-dd" var="formattedDate" />
+                        <fmt:parseDate value="${noti.regdate}" pattern="yyyy-MM-dd" var="formattedDate" />
                         <td class="has-text-centered"><fmt:formatDate value="${formattedDate }" pattern="yyyy.MM.dd"/></td>
                         <td class="has-text-centered">관리자</td>
-                        <td class="has-text-centered">${noti.visit }</td>
+                        <td class="has-text-centered">${noti.visited}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

@@ -71,10 +71,10 @@
                             <span class="is-size-6 has-text-grey ml-1">관리자</span>
                         </span> |
                         <span class="is-size-6 mx-3">작성일
-                            <span class="is-size-6 has-text-grey ml-1">${domain.resdate }</span>
+                            <span class="is-size-6 has-text-grey ml-1">${domain.regdate }</span>
                         </span> |
                         <span class="is-size-6 mx-3">조회수
-                            <span class="is-size-6 has-text-grey ml-1">${domain.visit }</span>
+                            <span class="is-size-6 has-text-grey ml-1">${domain.visited }</span>
                         </span>
                     </div>
                     <hr>
@@ -84,10 +84,6 @@
                 </div>
             </div>
             <div class="btns has-text-centered">
-                <%--<c:if test="${sid.equals('admin')}">
-                    <a class="button is-info mx-1" href="${path1 }/notice/edit.do?no=${domain.no}">수정</a>
-                    <a class="button is-danger mx-1" href="${path1 }/notice/delete.do?no=${domain.no}">삭제</a>
-                </c:if>--%>
                 <c:choose>
                     <c:when test="${authorities eq '[ADMIN]'}">
                         <a class="button mx-1" style="background-color: #2B3A55; color: #fff;" href="${path1 }/notice/list.do">목록</a>

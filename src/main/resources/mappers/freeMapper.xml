@@ -48,8 +48,8 @@
     </select>
 
     <!-- 공지사항 글 작성 -->
-    <insert id="freeInsert" parameterType="com.chunjae.test06.entity.Free">
-        insert into free (title, content, col3, col4, col5) VALUES (#{title}, #{content}, default, default, default);
+    <insert id="freeInsert">
+        insert into free VALUES (default, #{title}, #{content}, default, default);
     </insert>
 
     <!-- 공지사항 글 삭제 -->

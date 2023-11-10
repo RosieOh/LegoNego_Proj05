@@ -11,6 +11,7 @@ public class Notice {
     private int no;
     private String title;
     private String content;
-    private String resdate;
-    private String visit;
+    private String author;
+    private String regdate;
+    private String visited;
 }
