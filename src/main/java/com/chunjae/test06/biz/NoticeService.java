@@ -26,16 +26,16 @@ public class NoticeService {
         noticeMapper.visitCount(no);
     }
 
-    public void noticeInsert(Notice notice) {
-        noticeMapper.noticeInsert(notice);
+    public void noticeInsert(Notice domain) {
+        noticeMapper.noticeInsert(domain);
     }
 
     public void noticeDelete(int no) {
         noticeMapper.noticeDelete(no);
     }
 
-    public void noticeEdit(Notice notice) {
-        noticeMapper.noticeEdit(notice);
+    public void noticeEdit(Notice domain) {
+        noticeMapper.noticeEdit(domain);
     }
 
     public int totalCount(Page page) {

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chunjae.test06.per.FreeMapper">
+    <!-- 페이지 검색할 때 활용 -->
+    <select id="freeList" resultType="com.chunjae.test06.entity.Free">
+        <![CDATA[
+        select * from free
+        ]]>
+        <where>
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'title'.toString()">
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'content'.toString()">
+                        content LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+        <![CDATA[
+        order by regdate desc LIMIT #{postStart}, #{postCount}
+        ]]>
+    </select>
+
+    <!-- 공지사항 상세 보기 -->
+    <select id="freeDetail" resultType="com.chunjae.test06.entity.Free">
+        select * from free where fno=#{fno}
+    </select>
+
+    <!-- 글 수 카운트 -->
+    <select id="totalCount" resultType="integer">
+        <![CDATA[
+    select count(*) from free
+       ]]>
+        <where>
+            <if test="searchType != null">
+                <choose>
+                    <when test="searchType == 'title'.toString()">
+                        title LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                    <when test="searchType == 'content'.toString()">
+                        content LIKE concat('%', #{searchKeyword}, '%')
+                    </when>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+    <!-- 공지사항 글 작성 -->
+    <insert id="freeInsert" parameterType="com.chunjae.test06.entity.Free">
+        insert into free (title, content, col3, col4, col5) VALUES (#{title}, #{content}, default, default, default);
+    </insert>
+
+    <!-- 공지사항 글 삭제 -->
+    <delete id="freeDelete">
+        delete from free where fno=#{fno}
+    </delete>
+
+    <!-- 공지사항 글 수정 -->
+    <update id="freeEdit">
+        update free set title=#{title}, content=#{content} where fno=#{fno}
+    </update>
+
+    <!-- visit 증가 -->
+    <update id="visitCount">
+        update free set visit = visit+1 where fno=#{fno}
+    </update>
+
+    <!-- 검색창 (제목, 내용) -->
+    <sql id="criteria">
+        <where>
+            <trim prefixOverrides="OR">
+                <foreach item="type" collection="typeArr">
+                    <trim prefixOverrides="OR">
+                        <choose>
+                            <when test="type == 'T'.toString()">
+                                title LIKE '%' || #{keyword} || '%'
+                            </when>
+                            <when test="type == 'C'.toString()">
+                                content LIKE '%' || #{keyword} || '%'
+                            </when>
+                        </choose>
+                    </trim>
+                </foreach>
+            </trim>
+        </where>
+    </sql>
+
+    <!-- 페이징 처리 -->
+    <select id="getListWithPaging" resultType="com.chunjae.test06.entity.Free">
+        <![CDATA[
+        select * from free
+        ]]>
+        <include refid="criteria" />
+        <![CDATA[
+        ORDER BY regdate DESC LIMIT ((#{pageNum} - 1) * #{amount}), #{amount}
+        ]]>
+    </select>
+</mapper>

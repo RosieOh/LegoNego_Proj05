@@ -58,40 +58,43 @@
 
 <nav class="breadcrumb has-succeeds-separator is-medium is-right mt-3 p-4" style="background: #f1f4f9" aria-label="breadcrumbs">
     <ul class="mr-5">
-        <li><a href="${path1}"><i class="xi-home is-size-3"></i></a></li>
-        <li><a>커뮤니티</a></li>
-        <li><a href="${path1}/notice/list.do">공지사항</a></li>
+        <li><a href="${path1}" class="has-text-dark"><i class="xi-home is-size-4"></i> 홈</a></li>
+        <li><span class="mx-2 has-text-grey">/</span></li>
+        <li><a href="${path1}/community" class="has-text-dark">커뮤니티</a></li>
+        <li><span class="mx-2 has-text-grey">/</span></li>
+        <li><a href="${path1}/notice/list.do" class="has-text-primary">공지사항</a></li>
     </ul>
-    <p class="title has-text-centered mt-1 mb-2">공지사항</p>
-    <%--    <h3 class="contents">일정 및 행사 안내, 이벤트 발표, 채널 등 해법의 커뮤니티 게시판입니다.</h3>--%>
+    <div class="has-text-centered">
+        <p class="title is-size-4 mt-1">공지사항</p>
+        <p class="contents has-text-grey">일정 및 행사 안내, 이벤트 발표, 채널 등 해법의 커뮤니티 게시판입니다.</p>
+    </div>
 </nav>
 
 <div class="container">
-    <div class="columns is-multiline mt-1 mx-5">
-        <div class="column is-4">
-            <form action="${path1 }/notice/list.do" method="get" class="field has-addons">
-                <p class="control">
-                <span class="select">
-                    <select id="type" name="type">
-                        <option value="title">제목</option>
-                        <option value="content">내용</option>
-                    </select>
-                </span>
-                </p>
-                <p class="control">
-                    <input class="input" type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" value="${keyword }">
-                </p>
-                <p class="control">
-                    <input type="submit" class="button" value="검색" />
-                </p>
-            </form>
+    <div class="container mt-1 mx-5">
+        <div class="row">
+            <div class="col-md-4">
+                <form action="${path1}/notice/list.do" method="get" class="input-group">
+                    <div class="input-group-prepend">
+                        <select class="custom-select" id="type" name="type">
+                            <option value="title">제목</option>
+                            <option value="content">내용</option>
+                        </select>
+                    </div>
+                    <input type="text" class="form-control" id="keyword" name="keyword" placeholder="검색어를 입력하세요" value="${keyword}">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">검색</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2 offset-md-6 text-right">
+                <c:if test="${authorities eq '[ADMIN]'}">
+                    <a class="btn btn-link btn-md" href="${path1}/notice/insert.do?site=user">글쓰기</a>
+                </c:if>
+            </div>
         </div>
-        <div class="column is-2 is-offset-6 has-text-right">
-            <c:if test="${authorities eq '[ADMIN]'}">
-                <a class="button is-link is-medium" href="${path1 }/notice/insert.do?site=user" >글쓰기</a>
-            </c:if>
-        </div>
-
+    </div>
+    <br>
         <div class="column is-12">
             <table class="table is-centered is-fullwidth">
                 <thead>

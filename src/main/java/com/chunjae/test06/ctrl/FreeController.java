@@ -1,7 +1,7 @@
 package com.chunjae.test06.ctrl;
 
-import com.chunjae.test06.biz.NoticeService;
-import com.chunjae.test06.entity.Notice;
+import com.chunjae.test06.biz.FreeService;
+import com.chunjae.test06.entity.Free;
 import com.chunjae.test06.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -20,23 +19,22 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/notice/")
-public class NoticeController {
+@RequestMapping("/free/*")
+public class FreeController {
 
     @Autowired
-    private NoticeService noticeService;
-
+    private FreeService freeService;
 
     @GetMapping("list.do")
-    public String getNoticeList(HttpServletRequest request, Model model) throws Exception {
-        String type = request.getParameter("type");
-        String keyword = request.getParameter("keyword");
-        int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
+    public String getFreeList(HttpServletRequest httpServletRequest, Model model) throws Exception {
+        String type = httpServletRequest.getParameter("type");
+        String keyword = httpServletRequest.getParameter("keyword");
+        int curPage = httpServletRequest.getParameter("page") != null ? Integer.parseInt(httpServletRequest.getParameter("page")) : 1;
 
         Page page = new Page();
         page.setSearchType(type);
         page.setSearchKeyword(keyword);
-        int total = noticeService.totalCount(page);
+        int total = freeService.totalCount(page);
 
         page.makeBlock(curPage, total);
         page.makeLastPageNum(total);
@@ -48,68 +46,67 @@ public class NoticeController {
         model.addAttribute("curPage", curPage);
         model.addAttribute("total", total);
 
-        List<Notice> noticeList = noticeService.noticeList(page);
-        model.addAttribute("noticeList", noticeList);
+        List<Free> freeList = freeService.freeList(page);
+        model.addAttribute("freeList", freeList);
 
-        return "/notice/noticeList";
+        return "/free/freeList";
     }
 
     @GetMapping("detail.do")
-    public String getNoticeDetail(HttpServletRequest request, Model model) throws Exception {
-        int no = Integer.parseInt(request.getParameter("no"));
-        Notice domain = noticeService.noticeDetail(no);
+    public String getFreeDetail(HttpServletRequest httpServletRequest, Model model) throws Exception {
+        int fno = Integer.parseInt(httpServletRequest.getParameter("fno"));
+        Free domain = freeService.freeDetail(fno);
         model.addAttribute("domain", domain);
-
-        return "/notice/noticeDetail";
+        return "/free/freeList";
     }
 
     @GetMapping("insert.do")
-    public String insertForm(HttpServletRequest request, Model model) throws Exception {
-        String site = request.getParameter("site");
+    public String insertForm(HttpServletRequest httpServletRequest, Model model) throws Exception {
+        String site = httpServletRequest.getParameter("site");
         model.addAttribute("site", site);
-
-        return "/notice/noticeInsert";
+        return "/free/freeInsert";
     }
 
     @PostMapping("insert.do")
-    public String noticeInsert(HttpServletRequest request, Model model) throws Exception {
-        Notice domain = new Notice();
-        domain.setTitle(request.getParameter("title"));
-        domain.setContent(request.getParameter("content"));
-        noticeService.noticeInsert(domain);
+    public String freeInsert(HttpServletRequest httpServletRequest, Model model) throws Exception {
+        Free domain = new Free();
+        domain.setTitle(httpServletRequest.getParameter("title"));
+        domain.setContent(httpServletRequest.getParameter("content"));
+        freeService.freeInsert(domain);
 
-        String site = request.getParameter("site");
-        if(site.equals("admin")){
-            return "redirect:/notice/list.do";
+        // 이거 관리자만 접근가능 하게
+        String site = httpServletRequest.getParameter("site");
+        if(site.equals("admin")) {
+            return "redirect:/free/list.do";
         } else {
-            return "redirect:/notice/list.do";
+            return "redirect:/free/list.do";
         }
     }
 
     @GetMapping("delete.do")
-    public String noticeDelete(HttpServletRequest request, Model model) throws Exception {
-        int no = Integer.parseInt(request.getParameter("no"));
-        noticeService.noticeDelete(no);
-        return "redirect:/notice/list.do";
+    public String freeDelete(HttpServletRequest httpServletRequest, Model model) throws Exception {
+        int fno = Integer.parseInt(httpServletRequest.getParameter("fno"));
+        freeService.freeDelete(fno);
+        return "redirect:/free/list.do";
     }
 
     @GetMapping("edit.do")
-    public String editForm(HttpServletRequest request, Model model) throws Exception {
-        int no = Integer.parseInt(request.getParameter("no"));
-        Notice domain = noticeService.noticeDetail(no);
+    public String editForm(HttpServletRequest httpServletRequest, Model model) throws Exception {
+        int fno = Integer.parseInt(httpServletRequest.getParameter("fno"));
+        Free domain = freeService.freeDetail(fno);
         model.addAttribute("domain", domain);
-        return "/notice/noticeEdit";
+        return "/free/freeEdit";
     }
 
     @PostMapping("edit.do")
-    public String noticeEdit(HttpServletRequest request, Model model) throws Exception {
-        int no = Integer.parseInt(request.getParameter("no"));
-        Notice domain = new Notice();
-        domain.setNo(no);
-        domain.setTitle(request.getParameter("title"));
-        domain.setContent(request.getParameter("content"));
-        noticeService.noticeEdit(domain);
-        return "redirect:/notice/list.do";
+    public String freeEdit(HttpServletRequest httpServletRequest, Model model) throws Exception {
+        int fno = Integer.parseInt(httpServletRequest.getParameter("fno"));
+        Free domain = new Free();
+        domain.setFno(fno);
+        domain.setTitle(httpServletRequest.getParameter("title"));
+        domain.setContent(httpServletRequest.getParameter("content"));
+        freeService.freeEdit(domain);
+        return "redirect:/free/list.do";
     }
 
     //ckeditor를 이용한 이미지 업로드

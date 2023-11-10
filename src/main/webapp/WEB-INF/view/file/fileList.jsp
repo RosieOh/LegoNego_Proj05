@@ -54,14 +54,22 @@
 <!-- End Header -->
 
 <!-- Content Start -->
-<nav class="breadcrumb has-succeeds-separator is-medium is-right mt-3 p-4" style="background: #f1f4f9" aria-label="breadcrumbs">
-    <ul class="mr-5">
-        <li><a href="${path1}"><i class="xi-home is-size-3"></i></a></li>
-        <li><a>자료실</a></li>
-        <li><a href="${path1}/file/list.do">자료실</a></li>
-    </ul>
-    <p class="title has-text-centered mt-1 mb-2">자료실</p>
-</nav>
+<div class="breadcrumb has-succeeds-separator is-medium is-right mt-3 p-4" style="background: #f1f4f9; height: 200px;" aria-label="breadcrumbs">
+    <div class="container-fluid" style="background: #f1f4f9;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background: #f1f4f9;">
+            <a class="navbar-brand" href="${path1}/"><i class="xi-home is-size-3"></i> Home</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="${path1}/user/login">자료실</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="container mt-5">
+            <h2 class="text-center">자료실</h2>
+        </div>
+    </div>
+</div>
+
 
 <div class="container">
     <div class="columns is-multiline mt-1 mx-5">

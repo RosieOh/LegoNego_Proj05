@@ -34,6 +34,7 @@
 <script src="${path1}/resource/vendor/waypoints/noframework.waypoints.js"></script>
 <script src="${path1}/resource/vendor/php-email-form/validate.js"></script>
 
+<script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
+
 <!-- Template Main JS File -->
 <script src="${path1}/resource/js/main.js"></script>
-<script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>

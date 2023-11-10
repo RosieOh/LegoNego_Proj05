@@ -14,9 +14,9 @@ public interface NoticeMapper {
     List<Notice> noticeList(Page page);
     Notice noticeDetail(int no);
     void visitCount(int no);
-    void noticeInsert(Notice notice);
+    void noticeInsert(Notice domain);
     void noticeDelete(int no);
-    void noticeEdit(Notice notice);
+    void noticeEdit(Notice domain);
     int totalCount(Page page);
 
 }
