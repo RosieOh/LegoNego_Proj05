@@ -18,5 +18,4 @@ public interface NoticeMapper {
     void noticeDelete(int no);
     void noticeEdit(Notice domain);
     int totalCount(Page page);
-
 }

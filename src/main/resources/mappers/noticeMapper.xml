@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chunjae.test06.per.NoticeMapper">
-    <!-- 페이지 검색할 때 활용 -->
+
+    <!-- 공지사항 목록 출력 (검색창, 페이징 포함) -->
     <select id="noticeList" resultType="com.chunjae.test06.entity.Notice">
         <![CDATA[
         select * from notice
@@ -19,13 +20,13 @@
             </if>
         </where>
         <![CDATA[
-        order by regdate desc LIMIT #{postStart}, #{postCount}
+        order by resdate desc LIMIT #{postStart}, #{postCount}
         ]]>
     </select>
 
-    <!-- 공지사항 상세 보기 -->
+    <!-- 공지사항 글 상세보기 -->
     <select id="noticeDetail" resultType="com.chunjae.test06.entity.Notice">
-        select * from Notice where no=#{no}
+        select * from notice where no=#{no}
     </select>
 
     <!-- 글 수 카운트 -->
@@ -47,8 +48,9 @@
         </where>
     </select>
 
+    <!-- 공지사항 글 작성 -->
     <insert id="noticeInsert">
-        insert into notice VALUES (default, #{title}, #{content}, #{author}, default, default);
+        insert into notice VALUES (default, #{title}, #{content}, default, default);
     </insert>
 
     <!-- 공지사항 글 삭제 -->
@@ -63,7 +65,7 @@
 
     <!-- visit 증가 -->
     <update id="visitCount">
-        update notice set visited = visited+1 where no=#{no}
+        update notice set visit = visit+1 where no=#{no}
     </update>
 
     <!-- 검색창 (제목, 내용) -->

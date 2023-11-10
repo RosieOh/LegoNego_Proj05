@@ -71,10 +71,10 @@
                             <span class="is-size-6 has-text-grey ml-1">관리자</span>
                         </span> |
                         <span class="is-size-6 mx-3">작성일
-                            <span class="is-size-6 has-text-grey ml-1">${domain.regdate }</span>
+                            <span class="is-size-6 has-text-grey ml-1">${domain.resdate }</span>
                         </span> |
                         <span class="is-size-6 mx-3">조회수
-                            <span class="is-size-6 has-text-grey ml-1">${domain.visited }</span>
+                            <span class="is-size-6 has-text-grey ml-1">${domain.visit}</span>
                         </span>
                     </div>
                     <hr>
