@@ -15,8 +15,8 @@
             <div class="carousel-item active" style="background-image: url(${path1}/resource/img/slide/slide-1.jpg);">
                 <div class="carousel-container">
                     <div class="carousel-content animate__animated animate__fadeInUp">
-                        <h2>Welcome to <span>Flattern</span></h2>
-                        <p>Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                        <h2>Welcome to <span>LegoNego</span></h2>
+                        <p>LegoNego는 Let's go Negotiation이라는 의미가 우리가 살아가는 곳에서 다양한 중고 물건들을 사고 팔며 원활한 협상을 통해 너 나은 물건을 구매하자는 의미 입니다.</p>
                         <div class="text-center"><a href="" class="btn-get-started">Read More</a></div>
                     </div>
                 </div>

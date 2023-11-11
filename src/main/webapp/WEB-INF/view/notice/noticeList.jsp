@@ -6,7 +6,7 @@
     <sec:authentication property="principal" var="principal"/>
     <sec:authentication property="authorities" var="authorities"/>
 </sec:authorize>
-<c:set var="path0" value="${pageContext.request.contextPath}" />
+<c:set var="path1" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
