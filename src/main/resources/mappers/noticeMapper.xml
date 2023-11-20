@@ -20,7 +20,7 @@
             </if>
         </where>
         <![CDATA[
-        order by resdate desc LIMIT #{postStart}, #{postCount}
+        order by regdate desc LIMIT #{postStart}, #{postCount}
         ]]>
     </select>
 
@@ -50,7 +50,7 @@
 
     <!-- 공지사항 글 작성 -->
     <insert id="noticeInsert">
-        insert into notice VALUES (default, #{title}, #{content}, default, default);
+        insert into notice VALUES (default, #{title}, #{content}, default, default, default);
     </insert>
 
     <!-- 공지사항 글 삭제 -->
