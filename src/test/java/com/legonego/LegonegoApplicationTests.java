@@ -1,10 +1,10 @@
-package com.chunjae.test06;
+package com.legonego;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Test06ApplicationTests {
+class LegonegoApplicationTests {
 
     @Test
     void contextLoads() {
