@@ -167,45 +167,6 @@ CREATE TABLE COMMENT(
 );
 
 
-INSERT INTO comment VALUES(
-                              DEFAULT,
-                              '이나현',
-                              '좋은 정보 감사합니다!',
-                              DEFAULT,
-                              '6'
-                          );
-
-INSERT INTO comment VALUES(
-                              DEFAULT,
-                              '권은빈',
-                              '우왕~ 참고할게욧!',
-                              DEFAULT,
-                              '6'
-                          );
-
-INSERT INTO comment VALUES(
-                              DEFAULT,
-                              '이서진',
-                              '스마트해법 짱ㅋ',
-                              DEFAULT,
-                              '6'
-                          );
-
-INSERT INTO comment VALUES(
-                              DEFAULT,
-                              '안유빈',
-                              '허허,,, 그렇군요,,,',
-                              DEFAULT,
-                              '6'
-                          );
-
-INSERT INTO comment VALUES(
-                              DEFAULT,
-                              '오레오',
-                              '엥',
-                              DEFAULT,
-                              '6'
-                          );
 
 DESC comment;
 SELECT * FROM comment;
